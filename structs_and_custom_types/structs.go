@@ -26,13 +26,14 @@ func main() {
 		createdAt: time.Now(),
 	}
 
-	outputUserDetails(appUser)
+	outputUserDetails(&appUser)
 }
 
-func outputUserDetails(u User) {
+func outputUserDetails(u *User) {
 	fmt.Println("First Name: ", u.firstName)
 	fmt.Println("Last Name: ", u.lastName)
 	fmt.Println("Birthdate: ", u.birthdate)
+	fmt.Println("Created At: ", u.createdAt)
 
 }
 
