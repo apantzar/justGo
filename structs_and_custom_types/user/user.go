@@ -1,9 +1,9 @@
 package user
 
-import(
+import (
+	"errors"
 	"fmt"
 	"time"
-	"errors"
 )
 
 type User struct {
@@ -11,6 +11,12 @@ type User struct {
 	lastName  string
 	birthdate string
 	createdAt time.Time
+}
+
+type Admin struct {
+	email    string
+	password string
+	User
 }
 
 func (u *User) OutputUserDetails() {
@@ -24,6 +30,21 @@ func (u *User) OutputUserDetails() {
 func (u *User) ClearUserNames() {
 	u.firstName = ""
 	u.lastName = ""
+}
+
+func NewAdmin(email, password string) Admin {
+
+	return Admin{
+		email:    email,
+		password: password,
+		User: User{
+			firstName: "ADMIN",
+			lastName:  "ADMIN",
+			birthdate: "--/--/----",
+			createdAt: time.Now(),
+		},
+	}
+
 }
 
 func New(firstName, lastName, birthdate string) (*User, error) {
